@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import BookContextProvider from './contexts/BookContext';
+import Navbar from './components/Navbar';
+import BookList from './components/BookList';
+import NewBookForm from './components/BookForm';
+import { motion } from 'framer-motion';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<motion.div
+			className='App'
+			drag
+			dragConstraints={{
+				top: 0,
+				left: -400,
+				right: 400,
+				bottom: 300,
+			}}
+		>
+			<BookContextProvider>
+				<Navbar />
+				<BookList />
+				<NewBookForm />
+			</BookContextProvider>
+		</motion.div>
+	);
 }
 
 export default App;
